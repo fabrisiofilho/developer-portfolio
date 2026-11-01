@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <title>Fabrisio Filho</title>
+  <rect width="64" height="64" rx="14" fill="#101211"/>
+  <path d="M12 49V24c0-9 5-14 14-14h4v8h-4c-4 0-6 2-6 6v3h10v8H20v14H12Zm20 0V24c0-9 5-14 14-14h4v8h-4c-4 0-6 2-6 6v3h10v8H40v14h-8Z" fill="#eeeef0"/>
+  <circle cx="53" cy="45" r="5" fill="#c4f56b"/>
+</svg>
