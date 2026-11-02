@@ -39,3 +39,20 @@ Confira em desktop e celular: navegação por âncoras e teclado, filtros dos pr
 ## Organização da apresentação
 
 O topo apresenta nome, cargo e áreas de contribuição, sem foto. A foto discreta fica em Sobre. A trajetória apresenta empresas, cargos, períodos e responsabilidades, da experiência mais recente para a mais antiga, agrupando os cargos no SENAI. Os projetos encerram o conteúdo. Todos os cartões usam o componente interativo com textura pontilhada e suporte a movimento reduzido.
+
+---
+
+<!-- github-standardizer:start -->
+## Overview
+
+Developer portfolio built with React, TypeScript, and Vite.
+
+## Technology indicators
+
+- Node.js ecosystem
+
+## Getting started
+
+Check the project manifests and existing documentation for supported setup commands. No installation instructions were inferred.
+
+<!-- github-standardizer:end -->
