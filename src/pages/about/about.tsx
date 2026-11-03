@@ -2,12 +2,8 @@ import { Container, Box, Typography, Stack, IconButton, Grid} from "@mui/materia
 import { AnimatePresence, motion } from "framer-motion";
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import { Timeline, TimelineConnector, TimelineContent, TimelineDot, TimelineItem, TimelineOppositeContent, TimelineSeparator, timelineContentClasses } from "@mui/lab";
+import { Timeline, TimelineConnector, TimelineContent, TimelineDot, TimelineItem, TimelineOppositeContent, TimelineSeparator } from "@mui/lab";
 import ApartmentIcon from '@mui/icons-material/Apartment';
-
-interface AboutProps {
-
-}
 
 interface Exp {
     title: string,
@@ -97,7 +93,7 @@ const stacks: Stack[] = [
     }
 ]
 
-export function About ({}: AboutProps) {
+export function About() {
     return (
         <AnimatePresence>
             <motion.div

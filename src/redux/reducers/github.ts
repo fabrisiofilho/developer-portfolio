@@ -29,18 +29,15 @@ export const githubSlide = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-        .addCase(getRepositories.pending, (state, action) => {
+        .addCase(getRepositories.pending, (state) => {
             state.status = 'pending';
         })
         .addCase(getRepositories.fulfilled, (state, action) => {
             state.repositories = action.payload;
             state.status = 'accept';
         })
-        .addCase(getRepositories.rejected, (state, action) => {
+        .addCase(getRepositories.rejected, (state) => {
             state.status = 'rejected';
         })
     },
 });
-
-
-export const {} = githubSlide.actions;

@@ -3,10 +3,6 @@ import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
-interface HomeProps {
-
-}
-
 interface Tab {
     label: string,
     path: string
@@ -31,8 +27,8 @@ const tabs: Tab[] = [
     }
 ]
 
-export function Home ({}: HomeProps) {
-    const [selectedTab, setSelectedTab] = useState(tabs[0]);
+export function Home() {
+    const [, setSelectedTab] = useState(tabs[0]);
     const navigate = useNavigate();
     const location = useLocation();
 

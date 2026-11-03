@@ -1,42 +1,181 @@
-// O primeiro vínculo informado começou em julho de 2021.
-export const careerStart = { year: 2021, month: 7 };
+import type { LocalizedText } from '../i18n/I18nProvider';
+
 export const github = 'https://github.com/fabrisiofilho';
 export const email = 'fabrisiopbf@gmail.com';
-export const skills = ['Java', 'Spring Framework', 'React', 'Angular', 'TypeScript', 'Node.js', 'PostgreSQL', 'MySQL', 'Docker', 'JUnit', 'REST APIs'];
-export const experience = [
+export const skills = [
+    'Java',
+    'Spring Framework',
+    'React',
+    'Angular',
+    'TypeScript',
+    'Node.js',
+    'PostgreSQL',
+    'MariaDB',
+    'H2',
+    'SQLite',
+    'Docker',
+    'JUnit',
+    'Git',
+    'Liquibase',
+    'Flyway',
+    'REST APIs',
+];
+
+interface Role {
+    id: string;
+    start: string;
+    end: string | null;
+    title: LocalizedText;
+    description: LocalizedText;
+    technologies: string[];
+}
+
+interface CareerChapter {
+    id: string;
+    company: string;
+    summary?: LocalizedText;
+
+    roles: Role[];
+}
+
+const roles: Role[] = [
     {
-        company: 'Trier Sistemas',
-        role: 'Full Stack Software Developer',
-        period: 'OUTUBRO DE 2026 — ATUAL',
-        description: 'Desenvolvimento full stack em aplicações com arquitetura de microsserviços.',
-        current: true,
+        id: 'trier-master',
+        technologies: ['Full-stack'],
+        start: '2026-10',
+        end: null,
+        title: {
+            'pt-BR': 'Analista Programador Master',
+            'en-US': 'Master Software Developer',
+        },
+        description: {
+            'pt-BR':
+                'Desenvolvimento e evolução de soluções corporativas de grande porte, com atuação full-stack e foco na compreensão de regras de negócio, manutenção de código e implementação de funcionalidades. Colaboração na análise técnica, investigação de problemas e melhoria contínua.',
+            'en-US':
+                'Develop and enhance large-scale enterprise software across the full stack, focusing on business rules, maintainable code, and feature delivery. Collaborate on technical analysis, troubleshooting, and continuous improvement.',
+        },
     },
     {
-        company: 'SENAI · Soluções Digitais',
-        role: 'Senior Software Developer',
-        period: 'SETEMBRO DE 2024 — OUTUBRO DE 2026',
-        description: 'Desenvolvimento full stack e responsabilidade técnica, com Java/Spring, Angular e React. Atuação com testes automatizados, Docker e migrações de banco de dados.',
-        current: false,
+        id: 'senai-senior',
+        technologies: [
+            'Java',
+            'Spring',
+            'Angular',
+            'React',
+            'TypeScript',
+            'MariaDB',
+            'PostgreSQL',
+            'H2',
+            'JUnit',
+            'Docker',
+            'Git',
+            'Liquibase',
+            'Flyway',
+            'Scrum',
+        ],
+        start: '2024-09',
+        end: '2026-10',
+        title: {
+            'pt-BR': 'Desenvolvedor de Software Sênior',
+            'en-US': 'Senior Software Developer',
+        },
+        description: {
+            'pt-BR':
+                'Atuação full-stack com maior responsabilidade técnica na evolução de sistemas de SST. Participação em decisões de implementação, qualidade de código e alinhamento técnico do squad.',
+            'en-US':
+                'Full-stack development with increased technical responsibility for evolving OHS systems. Contributed to implementation decisions, code quality, and technical alignment within the squad.',
+        },
     },
     {
-        company: 'SENAI · Soluções Digitais',
-        role: 'Mid-Level Software Developer',
-        period: 'MAIO DE 2023 — SETEMBRO DE 2024',
-        description: 'Evolução de uma aplicação de Saúde e Segurança do Trabalho (SST), com novas funcionalidades, manutenção e gerenciamento do squad em um ambiente ágil.',
-        current: false,
+        id: 'senai-mid',
+        technologies: ['Java', 'Spring', 'Angular', 'TypeScript', 'Git'],
+        start: '2023-05',
+        end: '2024-09',
+        title: {
+            'pt-BR': 'Desenvolvedor de Software Pleno',
+            'en-US': 'Mid-Level Software Developer',
+        },
+        description: {
+            'pt-BR':
+                'Desenvolvimento e manutenção de funcionalidades de SST, investigação de problemas e colaboração com o squad em entregas ágeis.',
+            'en-US':
+                'Developed and maintained OHS features, investigated issues, and collaborated with the squad on agile deliveries.',
+        },
     },
     {
-        company: 'SENAI · Soluções Digitais',
-        role: 'Software Developer',
-        period: 'MARÇO DE 2022 — MAIO DE 2023',
-        description: 'Desenvolvimento de funcionalidades e manutenção de uma aplicação de Saúde e Segurança do Trabalho (SST), integrando a equipe de Saúde.',
-        current: false,
+        id: 'senai-dev',
+        technologies: ['Java', 'Spring', 'Angular', 'Git'],
+        start: '2022-03',
+        end: '2023-05',
+        title: {
+            'pt-BR': 'Desenvolvedor de Software Júnior',
+            'en-US': 'Junior Software Developer',
+        },
+        description: {
+            'pt-BR':
+                'Implementação e sustentação de funcionalidades para aplicações da área de Saúde e Segurança do Trabalho (SST).',
+            'en-US':
+                'Implemented and maintained features for Occupational Health and Safety (OHS) applications.',
+        },
     },
     {
-        company: 'Trier Sistemas',
-        role: 'Intern Software Developer',
-        period: 'JULHO DE 2021 — MARÇO DE 2022',
-        description: 'Desenvolvimento com Angular, Electron, Java/Spring e Node.js, com experiência em bancos de dados, testes, cloud e microsserviços.',
-        current: false,
+        id: 'trier-intern',
+        technologies: [
+            'Angular',
+            'Sass',
+            'Electron',
+            'Java',
+            'Spring',
+            'Hibernate',
+            'Node.js',
+            'Express',
+            'TypeScript',
+            'TypeORM',
+            'PostgreSQL',
+            'SQLite',
+            'JUnit',
+            'Docker',
+            'Git',
+            'Flyway',
+        ],
+        start: '2021-07',
+        end: '2022-03',
+        title: {
+            'pt-BR': 'Estagiário de Desenvolvimento de Software',
+            'en-US': 'Software Development Intern',
+        },
+        description: {
+            'pt-BR':
+                'Desenvolvimento de aplicações web e desktop com Angular, Sass e Electron, além de serviços com Java, Spring, Hibernate, Node.js, Express, TypeScript e TypeORM. Experiência com PostgreSQL, SQLite, JUnit, Docker, Git e Flyway, além de conceitos de cloud e microsserviços.',
+            'en-US':
+                'Contributed to web and desktop applications with Angular, Sass, and Electron and to services using Java, Spring, Hibernate, Node.js, Express, TypeScript, and TypeORM. Worked with PostgreSQL, SQLite, JUnit, Docker, Git, and Flyway while exploring cloud and microservices concepts.',
+        },
     },
 ];
+
+export const experience: CareerChapter[] = [
+    {
+        id: 'trier-current',
+        company: 'Trier Sistemas',
+        roles: roles.slice(0, 1),
+    },
+    {
+        id: 'senai',
+        company: 'SENAI · Soluções Digitais',
+        summary: {
+            'pt-BR':
+                'Desenvolvimento e sustentação de soluções de Saúde e Segurança do Trabalho (SST), com participação em decisões técnicas e papel ativo na liderança de processos e na organização da equipe. Conduzi cafés da equipe e ajudei a consolidar o Scrum e as práticas ágeis na rotina do squad.',
+            'en-US':
+                'Developed and maintained Occupational Health and Safety (OHS) solutions, contributed to technical decisions, led team processes, and helped organize the squad. I facilitated team coffee chats and reinforced Scrum and agile practices in the day-to-day workflow.',
+        },
+        roles: roles.slice(1, 4),
+    },
+    {
+        id: 'trier-internship',
+        company: 'Trier Sistemas',
+        roles: roles.slice(4),
+    },
+];
+
+const [year, month] = roles[roles.length - 1].start.split('-').map(Number);
+export const careerStart = { year, month };

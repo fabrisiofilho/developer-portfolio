@@ -1,4 +1,4 @@
-import { Box, Chip, Container, IconButton, Stack, Typography } from "@mui/material";
+import { Box, Container, IconButton, Stack, Typography } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 import { useAppSelector } from "../../redux/store";
 import { useEffect } from "react";
@@ -7,17 +7,9 @@ import { getRepositories } from "../../redux/reducers/github";
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { useDispatch } from "react-redux";
 
-interface ProjectsProps {
-
-}
-
-export function Projects ({}: ProjectsProps) {
+export function Projects() {
     const repositories  = useAppSelector(
         (state) => state.github.repositories,
-    );    
-
-    const status  = useAppSelector(
-        (state) => state.github.status,
     );    
 
     const dispatch = useDispatch();

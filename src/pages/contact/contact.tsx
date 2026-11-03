@@ -1,13 +1,9 @@
-import { Box, Container, IconButton, Stack, Typography } from "@mui/material";
+import { Box, Container, Stack, Typography } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 import InstagramIcon from '@mui/icons-material/Instagram';
 import EmailIcon from '@mui/icons-material/Email';
 
-interface ContactProps {
-
-}
-
-export function Contact ({}: ContactProps) {
+export function Contact() {
     return (
         <AnimatePresence>
             <motion.div

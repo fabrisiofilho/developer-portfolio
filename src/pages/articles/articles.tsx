@@ -1,12 +1,8 @@
 import { Box, Container, Grid, Skeleton, Stack, Typography } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 
-interface ArticlesProps {
+export function Articles() {
 
-}
-
-export function Articles ({}: ArticlesProps) {
-    const loading = true;
 
     return (
         <AnimatePresence>
