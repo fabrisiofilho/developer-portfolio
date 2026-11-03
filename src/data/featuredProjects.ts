@@ -27,7 +27,7 @@ export const featuredProjects: FeaturedProject[] = [
                 'An integration with postal code APIs for looking up Brazilian addresses.',
         },
         stack: ['Java', 'CEP APIs'],
-        demo: 'https://fabrisiofilho.github.io/cep-finder/',
+        demo: 'https://cep-finder.onrender.com/',
     },
     {
         repo: 'tasx-desktop',
