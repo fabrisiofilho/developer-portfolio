@@ -36,6 +36,7 @@ export const pt = {
     toolkitTitle: 'Da lógica à experiência.',
     toolkitDescription: 'Tecnologias que fazem parte da minha trajetória.',
     degree: 'Análise e Desenvolvimento de Sistemas',
+    institution: 'Instituto Federal de Santa Catarina (IFSC)',
     undergraduate: 'Graduação',
     experienceEyebrow: '02 / TRAJETÓRIA',
     experienceTitle: 'Experiência profissional',

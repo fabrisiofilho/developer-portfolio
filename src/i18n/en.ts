@@ -38,6 +38,7 @@ export const en: typeof pt = {
     toolkitTitle: 'From logic to user experience.',
     toolkitDescription: "Technologies I've worked with throughout my career.",
     degree: 'Systems Analysis and Development',
+    institution: 'Federal Institute of Santa Catarina (IFSC)',
     undergraduate: 'Undergraduate degree',
     experienceEyebrow: '02 / EXPERIENCE',
     experienceTitle: 'Professional experience',

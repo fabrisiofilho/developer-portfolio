@@ -222,17 +222,18 @@ function Portfolio() {
                                     <span key={s}>{s}</span>
                                 ))}
                             </div>
-                            <div className="education">
-                                ↳{' '}
-                                <div>
-                                    <strong>{t.degree}</strong>
-                                    <p>
-                                        IFSC · {t.undergraduate} · 2019 — 2022
-                                    </p>
-                                </div>
-                            </div>
                         </Card>
                     </div>
+                    <Card className="education">
+                        <div>
+                            <div className="eyebrow">{t.undergraduate}</div>
+                            <h3>{t.degree}</h3>
+                            <p>{t.institution}</p>
+                        </div>
+                        <span className="education-period">
+                            <time dateTime="2019">2019</time> — <time dateTime="2022">2022</time>
+                        </span>
+                    </Card>
                 </section>
 
                 <section className="section wrap" id="trajetoria">
@@ -428,7 +429,7 @@ function Portfolio() {
                                 GitHub ↗
                             </a>
                             <a
-                                href="https://www.instagram.com/fabrisiofilho.dev/"
+                                href="https://www.instagram.com/fabrisiofilho/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
