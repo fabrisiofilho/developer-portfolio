@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Card } from './InteractiveCard';
 import { DesktopLogo, DesktopSurface, openContabily } from './ContabilyIdentity';
 import { LanguageSwitcher } from './LanguageSwitcher';
@@ -7,7 +8,38 @@ import { ContabilyDetails } from './ContabilyDetails';
 
 const repository = 'https://github.com/fabrisiofilho/contabily';
 const releases = `${repository}/releases/latest`;
-const installer = `${repository}/releases/download/v2.8.2/Contabily-setup-2.8.2.exe`;
+
+function useLatestRelease() {
+    const [release, setRelease] = useState({ version: '', installer: releases });
+
+    useEffect(() => {
+        const controller = new AbortController();
+        async function loadRelease() {
+            try {
+                const response = await fetch('https://api.github.com/repos/fabrisiofilho/contabily/releases/latest', {
+                    signal: controller.signal,
+                    headers: { Accept: 'application/vnd.github+json' },
+                });
+                if (!response.ok) return;
+                const data = await response.json();
+                if (typeof data.tag_name !== 'string' || data.draft || data.prerelease) return;
+                const asset = Array.isArray(data.assets) ? data.assets.find((asset: { name?: string; browser_download_url?: string }) =>
+                    typeof asset.name === 'string' && /^Contabily-setup-.*\.exe$/i.test(asset.name)
+                    && typeof asset.browser_download_url === 'string'
+                    && asset.browser_download_url.startsWith(`${repository}/releases/download/`)) : undefined;
+                if (!controller.signal.aborted) {
+                    setRelease({ version: data.tag_name.replace(/^v/i, ''), installer: asset?.browser_download_url ?? releases });
+                }
+            } catch {
+                // Keep the latest release page accessible if GitHub is unavailable.
+            }
+        }
+        void loadRelease();
+        return () => controller.abort();
+    }, []);
+
+    return release;
+}
 
 function useCopy() {
     const { locale } = useTranslation();
@@ -16,12 +48,13 @@ function useCopy() {
 
 export function ContabilySpotlight() {
     const c = useCopy();
+    const { installer } = useLatestRelease();
     return <Card className="contabily-spotlight">
         <div>
             <div className="eyebrow">{c('PROJETO EM DESTAQUE · CONTABILY', 'FEATURED PROJECT · CONTABILY')}</div>
             <h3>{c('Suas finanças. Uma visão completa.', 'Your finances. The full picture.')}</h3>
             <p>{c('Um aplicativo desktop para organizar a vida financeira. Uma experiência mobile em construção. E um futuro conectado entre dispositivos.', 'A desktop app to organize your finances. A mobile experience in progress. And a connected future across devices.')}</p>
-            <div className="actions"><a className="button" href="/contabily" onClick={openContabily}>{c('Conheça o Contabily', 'Discover Contabily')} ↗</a><a href={releases} target="_blank" rel="noopener noreferrer">{c('Download para Windows', 'Download for Windows')} ↓</a></div>
+            <div className="actions"><a className="button" href="/contabily" onClick={openContabily}>{c('Conheça o Contabily', 'Discover Contabily')} ↗</a><a href={installer} target="_blank" rel="noopener noreferrer">{c('Download para Windows', 'Download for Windows')} ↓</a></div>
         </div>
         <div className="contabily-monogram"><DesktopLogo /><small>DESKTOP / MOBILE / WEB</small></div>
     </Card>;
@@ -29,6 +62,7 @@ export function ContabilySpotlight() {
 
 export function ContabilyPage() {
     const c = useCopy();
+    const { version, installer } = useLatestRelease();
     const features = [
         [c('Movimentações', 'Transactions'), c('Receitas e despesas organizadas por conta, categoria e período, com uma visão clara do mês.', 'Income and expenses organized by account, category, and period, with a clear view of your month.')],
         [c('Planejamento', 'Planning'), c('Metas, orçamentos e recorrências para acompanhar a rotina e planejar os próximos passos.', 'Goals, budgets, and recurring transactions to track your routine and plan ahead.')],
@@ -60,7 +94,7 @@ export function ContabilyPage() {
                 <div className="projects contabily-features">{features.map(([title, description], i) => <DesktopSurface className="contabily-feature" key={title}><span className="eyebrow">0{i + 1}</span><h3>{title}</h3><p>{description}</p></DesktopSurface>)}</div>
             </section>
             <ContabilyDetails /><section className="section wrap" id="futuro"><DesktopSurface className="contabily-future"><div><div className="eyebrow">02 / {c('O PRÓXIMO CAPÍTULO', 'THE NEXT CHAPTER')}</div><h2>{c('Todos os dispositivos.', 'Every device.')}<br /><span>{c('Um só Contabily.', 'One Contabily.')}</span></h2><p>{c('O projeto segue em desenvolvimento. O próximo horizonte é uma versão web que centralize os recursos e permita compartilhar informações entre desktop, mobile e navegador, dando continuidade à mesma experiência em qualquer dispositivo.', 'The project is actively being developed. The next horizon is a web version that centralizes features and enables sharing information across desktop, mobile, and browser, continuing the same experience on every device.')}</p><ol className="contabily-roadmap"><li><b>{c('Hoje', 'Today')}</b><span>{c('Desktop disponível, com dados locais.', 'Desktop available, with local data.')}</span></li><li><b>{c('Em construção', 'Under construction')}</b><span>{c('Experiência mobile para Android.', 'Mobile experience for Android.')}</span></li><li><b>{c('Visão de futuro', 'Future vision')}</b><span>{c('Versão web, recursos centralizados e sincronização entre dispositivos. Ainda não disponíveis e sem data anunciada.', 'Web version, centralized features, and cross-device sync. Not yet available, with no announced release date.')}</span></li></ol></div><div className="contabily-connected"><div className="mobile-development"><DesktopLogo /><span className="current-badge">{c('Mobile em desenvolvimento', 'Mobile in development')}</span><h3>{c('Estamos construindo o próximo passo.', 'We are building the next step.')}</h3><p>{c('O aplicativo mobile ainda não está pronto. A interface, os fluxos e a distribuição Android estão em desenvolvimento. Não há download público disponível nesta página.', 'The mobile app is not ready yet. The interface, flows, and Android distribution are in development. No public download is available on this page.')}</p></div><div className="contabily-web"><span aria-hidden="true">◎</span><strong>Desktop ↔ Mobile ↔ Web</strong><p>{c('Uma conexão em construção.', 'A connection in the making.')}</p></div><p className="contabily-caption">{c('Desktop disponível · Mobile em andamento · Web planejada', 'Desktop available · Mobile in progress · Web planned')}</p></div></DesktopSurface></section>
-            <section className="section wrap" id="download"><DesktopSurface className="contact-panel"><div className="eyebrow">03 / {c('COMECE PELO DESKTOP', 'START WITH DESKTOP')}</div><h2>{c('Dê clareza aos seus números.', 'Bring clarity to your numbers.')}</h2><p>{c('Contabily Desktop 2.8.2 · Instalador para Windows', 'Contabily Desktop 2.8.2 · Windows installer')}</p><div className="actions"><a className="button" href={installer}>{c('Baixar para Windows', 'Download for Windows')} ↓</a><a href={releases} target="_blank" rel="noopener noreferrer">{c('Ver versão mais recente', 'View latest release')} ↗</a></div><p className="contabily-caption">{c('Mobile e web seguem em desenvolvimento. Acompanhe a evolução no', 'Mobile and web remain in development. Follow progress on')} <a href={repository} target="_blank" rel="noopener noreferrer">GitHub ↗</a></p></DesktopSurface></section>
+            <section className="section wrap" id="download"><DesktopSurface className="contact-panel"><div className="eyebrow">03 / {c('COMECE PELO DESKTOP', 'START WITH DESKTOP')}</div><h2>{c('Dê clareza aos seus números.', 'Bring clarity to your numbers.')}</h2><p>Contabily Desktop{version ? ' ' + version : ''} · {c('Instalador para Windows', 'Windows installer')}</p><div className="actions"><a className="button" href={installer}>{c('Baixar para Windows', 'Download for Windows')} ↓</a><a href={releases} target="_blank" rel="noopener noreferrer">{c('Ver versão mais recente', 'View latest release')} ↗</a></div><p className="contabily-caption">{c('Mobile e web seguem em desenvolvimento. Acompanhe a evolução no', 'Mobile and web remain in development. Follow progress on')} <a href={repository} target="_blank" rel="noopener noreferrer">GitHub ↗</a></p></DesktopSurface></section>
         </main>
         <footer className="wrap"><a href="/contabily"><DesktopLogo /></a><span>Contabily · {c('Um projeto de Fabrisio Filho', 'A project by Fabrisio Filho')}</span><a href="/#projetos" onClick={openContabily}>{c('Voltar ao portfólio', 'Back to portfolio')} ↗</a></footer>
     </div>;
