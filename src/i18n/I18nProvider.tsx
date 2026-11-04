@@ -66,12 +66,18 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     }, [locale]);
 
     useEffect(() => {
-        const title = `Fabrisio Filho — ${t.headline}`;
+        const isContabily = location.pathname.replace(/\/$/, '') === '/contabily';
+        const title = isContabily ? 'Contabily · Fabrisio Filho' : `Fabrisio Filho — ${t.headline}`;
+        const description = isContabily
+            ? locale === 'pt-BR'
+                ? 'Conheça o Contabily: organização financeira no desktop, mobile em desenvolvimento e uma visão de futuro conectada à web.'
+                : 'Discover Contabily: desktop finance management, mobile in development, and a future connected to the web.'
+            : t.heroDescription;
         document.documentElement.lang = locale;
         document.title = title;
         for (const [selector, value] of [
-            ['meta[name="description"]', t.heroDescription],
-            ['meta[property="og:description"]', t.heroDescription],
+            ['meta[name="description"]', description],
+            ['meta[property="og:description"]', description],
             ['meta[property="og:title"]', title],
             ['meta[property="og:locale"]', locale.replace('-', '_')],
             [
@@ -106,6 +112,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
         } else {
             const wave = document.createElement('div');
             wave.className = 'locale-wave';
+            wave.style.setProperty('--locale-wave-color', location.pathname.replace(/\/$/, '') === '/contabily' ? '#9bd9b5' : '#c4f56b');
             wave.setAttribute('aria-hidden', 'true');
             switching.current = true;
 

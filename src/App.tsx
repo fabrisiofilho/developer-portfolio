@@ -8,10 +8,17 @@ import { github, email, skills, careerStart } from './data/profile';
 import { I18nProvider, useTranslation } from './i18n/I18nProvider';
 import { LanguageSwitcher } from './components/LanguageSwitcher';
 import './app.css';
+import { ContabilyPage, ContabilySpotlight } from './components/Contabily';
 export default function App() {
+    const [pathname, setPathname] = useState(location.pathname);
+    useEffect(() => {
+        const update = () => setPathname(location.pathname);
+        window.addEventListener('popstate', update);
+        return () => window.removeEventListener('popstate', update);
+    }, []);
     return (
-        <I18nProvider>
-            <Portfolio />
+        <I18nProvider key={pathname}>
+            {pathname.replace(/\/$/, '') === '/contabily' ? <ContabilyPage /> : <Portfolio />}
         </I18nProvider>
     );
 }
@@ -277,6 +284,7 @@ function Portfolio() {
                         </a>
                     </div>
                     <p className="description">{t.projectsDescription}</p>
+                    <ContabilySpotlight />
                     <h3 className="projects-subheading">{t.featured}</h3>
                     <div className="projects">
                         {featuredProjects.map((project) => (

@@ -144,7 +144,7 @@ header .logo small { display: inline; }
   height: 128px;
   z-index: 1000;
   pointer-events: none;
-  background: radial-gradient(circle, #c4f56b 1px, transparent 1.5px) 0 0 / 9px 9px;
+  background: radial-gradient(circle, var(--locale-wave-color, #c4f56b) 1px, transparent 1.5px) 0 0 / 9px 9px;
   mask-image: linear-gradient(transparent, #000 40%, #000 60%, transparent);
   clip-path: polygon(0 37%, 12% 31%, 25% 32%, 37% 41%, 50% 49%, 62% 48%, 75% 39%, 88% 32%, 100% 37%, 100% 64%, 88% 59%, 75% 66%, 62% 75%, 50% 76%, 37% 68%, 25% 59%, 12% 58%, 0 64%);
   animation: locale-wave-sweep 580ms linear both;

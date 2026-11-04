@@ -4,6 +4,8 @@ Portfólio responsivo em React, TypeScript e Vite, com trajetória profissional 
 
 Responsive React, TypeScript, and Vite portfolio with bilingual career history, a curated showcase, and public repository search.
 
+O destaque Contabily na seção de projetos leva a `/contabily`, uma página bilíngue e responsiva com download do instalador Windows 2.8.2, acesso à release mais recente e apresentação do mobile e da futura versão web. As interfaces exibidas são ilustrações com dados demonstrativos; a sincronização entre dispositivos é uma visão futura, ainda indisponível. Atualize o instalador e o número da versão em `src/components/Contabily.tsx` quando houver uma nova release. Nenhum APK é anunciado enquanto não houver distribuição pública confirmada.
+
 ## Executar e validar / Run and verify
 
 ```sh
@@ -35,3 +37,5 @@ The browser's first language preference sets the initial locale. Portuguese, inc
 As descrições automáticas são exibidas no idioma original do GitHub. Em caso de falha, a vitrine continua acessível e o catálogo usa a última lista disponível na sessão.
 
 Automatic repository descriptions are shown in their original GitHub language. If the request fails, the showcase stays available and the catalog uses the last list saved in the session.
+
+As seis capturas do Contabily em `public/contabily/desktop-*.png` foram geradas no Electron real em 04/11/2026, usando uma base SQLite isolada em `.qa/portfolio-demo-*` no projeto desktop. O roteiro `.qa/capture-portfolio.mjs` cria um usuário fictício, contas, seis meses de transações, orçamentos, metas e investimentos por IPC real e captura as rotas com `webContents.capturePage`. Os dados pessoais não são usados. Capturas: visão geral, transações, investimentos, metas, orçamento e relatórios avançados. A base e os logs ficam somente no ambiente local do desktop.
