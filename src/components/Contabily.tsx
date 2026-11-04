@@ -39,7 +39,7 @@ export function ContabilyPage() {
         <header className="contabily-header">
             <a href="/contabily" aria-label="Contabily"><DesktopLogo /></a>
             <nav aria-label={c('Navegação Contabily', 'Contabily navigation')}><a href="#experiencia">{c('Experiência', 'Experience')}</a><a href="#telas">{c('Telas reais', 'Screenshots')}</a><a href="#recursos">{c('Recursos', 'Features')}</a><a href="#futuro">{c('O futuro', 'The future')}</a><a href="#download">Download</a></nav>
-            <div className="contabily-header-actions"><a className="portfolio-return" href="/#projetos" onClick={openContabily}>← {c('Meu portfólio', 'My portfolio')}</a><LanguageSwitcher /></div>
+            <div className="contabily-header-actions"><a className="portfolio-return" href="/#projetos" onClick={openContabily}>← Fabrisio Filho</a><LanguageSwitcher /></div>
         </header>
         <main id="principal" tabIndex={-1} className="contabily-page">
             <section className="hero wrap contabily-hero">
@@ -65,6 +65,7 @@ export function ContabilyPage() {
         <footer className="wrap"><a href="/contabily"><DesktopLogo /></a><span>Contabily · {c('Um projeto de Fabrisio Filho', 'A project by Fabrisio Filho')}</span><a href="/#projetos" onClick={openContabily}>{c('Voltar ao portfólio', 'Back to portfolio')} ↗</a></footer>
     </div>;
 }
+
 
 
 
